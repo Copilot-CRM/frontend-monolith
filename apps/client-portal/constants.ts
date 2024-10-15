@@ -1,5 +1,5 @@
 // LEGZ TOTO - fix type import
-import { Estimate, Intents } from "@repo/types";
+import { Estimate, Intents, Invoice } from "@repo/types";
 
 export const STATUS_VS_CHIP_INTENT: { [key in Estimate["status"]]: Intents } = {
   Approved: "success",
@@ -9,7 +9,19 @@ export const STATUS_VS_CHIP_INTENT: { [key in Estimate["status"]]: Intents } = {
   "Request Submitted": "neutral",
 };
 
-export const ESTIMATE_STATUSES: Record<Estimate['status'], { text: string; intent: Intents }> = {
+export const INVOICE_STATUSES: Record<
+  Invoice["status"],
+  { text: string; intent: Intents }
+> = {
+  Partial: { text: "Partial", intent: "neutral" },
+  Paid: { text: "Paid", intent: "success" },
+  Unpaid: { text: "Unpaid", intent: "danger" },
+};
+
+export const ESTIMATE_STATUSES: Record<
+  Estimate["status"],
+  { text: string; intent: Intents }
+> = {
   "Request Submitted": { text: "Request Submitted", intent: "neutral" },
   Declined: { text: "Declined", intent: "danger" },
   Approved: { text: "Approved", intent: "success" },

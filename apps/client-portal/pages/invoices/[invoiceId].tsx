@@ -181,10 +181,10 @@ export default function InvoicePage() {
       case "Paid":
         return "$0.00";
       case "Partial":
-        return `$${dueAmount.toFixed(2)}`;
+        return formatUSD(dueAmount);
       case "Unpaid":
       default:
-        return `$${total.toFixed(2)}`;
+        return formatUSD(total);
     }
   };
 

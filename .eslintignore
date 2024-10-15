@@ -1,9 +1,0 @@
-node_modules/
-storybook-static/
-dist/
-.next/
-out/
-pnpm-lock.yaml
-tailwind.config.js
-postcss.config.js
-next.config.mjs

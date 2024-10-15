@@ -1,16 +1,16 @@
-import { ChangeEvent, useCallback, useState } from "react";
 import router from "next/router";
 import Image from "next/image";
 
 // utils
 import { useQuery } from "@tanstack/react-query";
-import { ColumnFiltersState } from "@tanstack/react-table";
 import {
   generateColumn,
   generateDateColumn,
   generateStatusColumn,
   generateActionColumn,
+  CurrencyCell,
 } from "@/components/table-cell-renderers";
+import { useColumnFilters } from "@/hooks/useColumnFilters";
 
 // ui
 import * as Text from "@repo/ui/components/ui/text";
@@ -25,10 +25,13 @@ import { DataTable } from "@repo/ui/components/ui/data-table";
 
 // components
 import { Layout } from "@/components/layout";
-import { ESTIMATE_STATUSES, STATUS_VS_CHIP_INTENT } from "@/constants";
 
 // types
 import { Invoice } from "@repo/types";
+
+// constants
+import { INVOICE_STATUSES } from "@/constants";
+import { useMemo } from "react";
 
 const columns = [
   generateDateColumn<Invoice>("invoice_date", "Invoice Date"),
@@ -58,79 +61,66 @@ const columns = [
   generateColumn<Invoice>({
     key: "total",
     header: "Invoice Total",
-    cell: (value) => {
-      const amount = parseFloat(value);
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-      return <div className="font-medium">{formatted}</div>;
-    },
+    cell: (value) => <CurrencyCell value={value} />,
   }),
   generateColumn<Invoice>({
     key: "paid",
     header: "Paid Amount",
-    cell: (value) => {
-      const amount = parseFloat(value);
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-      return <div className="font-medium">{formatted}</div>;
-    },
+    cell: (value) => <CurrencyCell value={value} />,
   }),
-  generateStatusColumn<Invoice>("status", "Status", ESTIMATE_STATUSES),
+  generateStatusColumn<Invoice>("status", "Status", INVOICE_STATUSES),
   generateActionColumn<Invoice>("", "View Invoice", (row) =>
     router.push(`/invoices/${row.id}`),
   ),
 ];
 
 export default function Invoices() {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-
   const { data: invoices, isLoading } = useQuery<Invoice[]>({
     queryKey: ["invoices"],
     queryFn: () =>
       fetch("https://api.example.com/invoices").then((res) => res.json()),
   });
 
-  const handleFilterChange = useCallback((e: ChangeEvent<HTMLFormElement>) => {
-    const value = e.target.value;
-    if (value === "default") {
-      return setColumnFilters([]);
-    }
-    setColumnFilters([
-      {
-        id: "status",
-        value,
-      },
-    ]);
-  }, []);
+  const { columnFilters, handleFilterChange } = useColumnFilters();
+
+  const filterSelect = useMemo(() => {
+    return (
+      <div className="flex gap-3 items-center justify-start md:justify-end w-full">
+        <Text.Body>Status</Text.Body>
+        <form onChange={handleFilterChange} className="w-full">
+          <Select defaultValue="default">
+            <SelectTrigger className="w-full md:w-[180px]">
+              <SelectValue placeholder="All Statuses" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem key={"all"} value={"default"}>
+                All Statuses
+              </SelectItem>
+              {Object.keys(INVOICE_STATUSES).map((status) => (
+                <SelectItem key={status} value={status}>
+                  {INVOICE_STATUSES[status].text}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </form>
+      </div>
+    );
+  }, [handleFilterChange]);
 
   return (
     <Layout>
       <div className="flex flex-col gap-4 md:gap-9">
-        <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center">
-          <Text.Heading size="xl">Invoices</Text.Heading>
-          <div className="flex gap-3 items-center justify-start md:justify-end w-full">
-            <Text.Body>Status</Text.Body>
-            <form onChange={handleFilterChange} className="w-full">
-              <Select defaultValue="default">
-                <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="All Statuses" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="default">All Statuses</SelectItem>
-                  {Object.keys(STATUS_VS_CHIP_INTENT).map((status) => (
-                    <SelectItem key={status} value={status}>
-                      {status}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </form>
+        <div className="flex gap-4 justify-between md:items-center">
+          <Text.Heading size="xl" className="col-span-2">
+            Invoices
+          </Text.Heading>
+          <div className="flex gap-3 items-center justify-end">
+            <div className="hidden md:block">{filterSelect}</div>
           </div>
         </div>
+        <div className="flex justify-start md:hidden">{filterSelect}</div>
+
         {isLoading ? (
           <Text.Body>Loading invoices...</Text.Body>
         ) : invoices?.length ? (

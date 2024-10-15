@@ -117,6 +117,8 @@ This is a custom storybook command that will watch the `tailwind.config.ts`, `gl
 pnpm build-storybook
 ```
 
+See the [storybook guide](.storybook/README.md) for information regarding the storybook configuration and conventions on writing stories.
+
 ## Chromatic Integration
 
 This package is integrated with Chromatic for visual testing and review of UI components. Chromatic provides a platform for visual regression testing, component documentation, and collaboration.
@@ -139,7 +141,7 @@ This package is integrated with Chromatic for visual testing and review of UI co
 - **Manual Builds**: You can trigger a Chromatic build manually by running `pnpm chromatic` locally.
 - **Reviewing Changes**: Access the Chromatic dashboard to review visual changes, approve or reject them, and collaborate with your team.
 - **Storybook Build**: Chromatic also hosts the built storybook on their platform, so you can view the components in a real-world application.
-- [Chromatic Hosted Storybook](https://6701d6ee8c869f339a02e3cf-mfxkpxhvsn.chromatic.com/)
+- [Chromatic Hosted Storybook](https://6701d6ee8c869f339a02e3cf-ydisgzwxje.chromatic.com/)
 
 ### Chromatic Configuration
 

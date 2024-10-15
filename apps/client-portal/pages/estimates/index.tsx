@@ -1,11 +1,17 @@
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import router from "next/router";
-import { ColumnDef, ColumnFiltersState } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 import { useQuery } from "@tanstack/react-query";
 
-// components
-import { Layout } from "@/components/layout";
-import { RequestEstimateDialog } from "../../components/request-estimate";
+// utils
+import {
+  generateColumn,
+  generateDateColumn,
+  generateStatusColumn,
+  generateActionColumn,
+  CurrencyCell,
+} from "@/components/table-cell-renderers";
+import { useColumnFilters } from "@/hooks/useColumnFilters";
 
 // ui
 import * as Text from "@repo/ui/components/ui/text";
@@ -20,19 +26,15 @@ import {
 import { DataTable } from "@repo/ui/components/ui/data-table";
 import { Body } from "@repo/ui/components/ui/text";
 
+// components
+import { Layout } from "@/components/layout";
+import { RequestEstimateDialog } from "../../components/request-estimate";
+
 // types
 import { Estimate } from "@repo/types";
 
 // constants
 import { ESTIMATE_STATUSES, STATUS_VS_CHIP_INTENT } from "@/constants";
-
-// utils
-import {
-  generateColumn,
-  generateDateColumn,
-  generateStatusColumn,
-  generateActionColumn,
-} from "@/components/table-cell-renderers";
 
 export const columns: ColumnDef<Estimate>[] = [
   generateColumn<Estimate>({
@@ -44,17 +46,7 @@ export const columns: ColumnDef<Estimate>[] = [
   generateColumn<Estimate>({
     key: "total",
     header: "Total",
-    cell: (value) => {
-      const total = parseFloat(value);
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(total);
-
-      return (
-        <div className="text-right font-medium">{total ? formatted : "--"}</div>
-      );
-    },
+    cell: (value) => <CurrencyCell value={value} />,
   }),
   generateStatusColumn<Estimate>("status", "Status", ESTIMATE_STATUSES),
   generateActionColumn<Estimate>("", "View Estimate", (row) =>
@@ -63,8 +55,6 @@ export const columns: ColumnDef<Estimate>[] = [
 ];
 
 export default function Estimates() {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-
   const { data: estimates, isLoading } = useQuery<Estimate[]>({
     queryKey: ["estimates"],
     queryFn: () =>
@@ -75,19 +65,7 @@ export default function Estimates() {
     console.log("submit", args);
   }, []);
 
-  const handleFilterChange = useCallback((e: ChangeEvent<HTMLFormElement>) => {
-    const value = e.target.value;
-    if (value === "default") {
-      return setColumnFilters([]);
-    }
-
-    setColumnFilters([
-      {
-        id: "status",
-        value,
-      },
-    ]);
-  }, []);
+  const { columnFilters, handleFilterChange } = useColumnFilters();
 
   const filterSelect = useMemo(() => {
     return (
@@ -118,7 +96,7 @@ export default function Estimates() {
     <Layout>
       <div className="flex flex-col gap-4 md:gap-9">
         <div className="flex gap-4 justify-between md:items-center">
-          <Text.Heading size={"xl"} className="col-span-2">
+          <Text.Heading size="xl" className="col-span-2">
             Estimates
           </Text.Heading>
 
@@ -133,17 +111,17 @@ export default function Estimates() {
           </div>
         </div>
         <div className="flex justify-start md:hidden">{filterSelect}</div>
+
         {isLoading ? (
-          <div>Loading...</div>
+          <Text.Body>Loading estimates...</Text.Body>
         ) : estimates?.length ? (
           <DataTable
             columns={columns}
             data={estimates}
             columnFilters={columnFilters}
-            setColumnFilters={setColumnFilters}
           />
         ) : (
-          <div>No estimates found</div>
+          <Text.Body>No estimates found</Text.Body>
         )}
       </div>
     </Layout>
