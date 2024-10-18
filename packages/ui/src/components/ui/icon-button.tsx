@@ -24,6 +24,7 @@ const iconButtonVariants = cva([_base, _focus, _disabled, _rest], {
     },
     size: {
       md: "h-7 w-7",
+      sm: "h-4 w-4",
     },
   },
 
@@ -40,12 +41,12 @@ export interface IconButtonProps
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ className, variant, asChild = false, ...props }, ref) => {
+  ({ className, variant, size = "md", asChild = false, ...props }, ref) => {
     // child should be an icon
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(iconButtonVariants({ variant, className }))}
+        className={cn(iconButtonVariants({ variant, className, size }))}
         ref={ref}
         {...props}
       />
