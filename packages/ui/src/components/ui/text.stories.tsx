@@ -4,6 +4,7 @@ import { Body, Heading, Keyword } from "./text";
 const meta: Meta = {
   title: "UI/Text",
   component: Body,
+  tags: ["autodocs"],
   parameters: {
     controls: { hideNoControlsWarning: true, disable: true },
   },
