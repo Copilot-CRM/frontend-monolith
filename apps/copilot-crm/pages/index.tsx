@@ -1,6 +1,12 @@
-import React from "react";
+// components
 import { Layout } from "@/components/layout";
+import {
+  AutomationCard,
+  ConditionBlock,
+  AutomationCondition,
+} from "@/components/automation-card";
 
+// ui
 import { Button } from "@repo/ui/components/ui/button";
 import * as Text from "@repo/ui/components/ui/text";
 import {
@@ -9,15 +15,11 @@ import {
   TabsList,
   TabsTrigger,
 } from "@repo/ui/components/ui/tabs";
-import {
-  AutomationCard,
-  ConditionBlock,
-  AutomationCondition,
-} from "@repo/ui/components/ui/automation-card";
-
 import { Breadcrumbs } from "@repo/ui/components/ui/breadcrumbs";
 
+// mocks TODO - use MSW
 import { AUTOMATION_MOCK_DATA } from "@repo/mocks/automation-builder";
+
 /**
  * Mock tab views
  */

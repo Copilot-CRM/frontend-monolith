@@ -1,25 +1,22 @@
-import * as React from "react";
+import { forwardRef } from "react";
+import Link from "next/link";
 
+// ui
 import { Button } from "@repo/ui/components/ui/button";
 import * as Text from "@repo/ui/components/ui/text";
-import { cn } from "@repo/ui/lib/utils";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@repo/ui/components/ui/collapsible";
+import { StatusChip } from "@repo/ui/components/ui/status-chip";
+import { iconSize } from "@repo/ui/components/ui/icon-button";
 
-import {
-  Camera,
-  ChevronRight,
-  Lock,
-  LockOpen,
-  Eye,
-  EyeOff,
-} from "lucide-react";
-import { StatusChip } from "./status-chip";
-import { iconSize } from "./icon-button";
-import Link from "next/link";
+// icons
+import { ChevronRight, Lock, LockOpen, Eye, EyeOff } from "lucide-react";
+
+// utils
+import { cn } from "@repo/ui/lib/utils";
 
 /**
  *
@@ -45,7 +42,7 @@ const ConditionBlock = ({ block, children, ...props }: ConditionBlockProps) => (
 export interface AutomationConditionProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-const AutomationCondition = React.forwardRef<
+const AutomationCondition = forwardRef<
   HTMLDivElement,
   AutomationConditionProps
 >(({ className, ...props }, ref) => {

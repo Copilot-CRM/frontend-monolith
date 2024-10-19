@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { StarRating } from "@repo/ui/components/ui/star-rating";
+import { fn } from "@storybook/test";
 
 const meta: Meta<typeof StarRating> = {
   title: "UI/StarRating",
   component: StarRating,
   tags: ["autodocs"],
+  parameters: {
+    controls: { hideNoControlsWarning: true, disable: true },
+  },
   argTypes: {
-    rating: { control: { type: "range", min: 0, max: 5, step: 0.1 } },
+    rating: { control: { type: "range", min: 0, max: 5, step: 1 } },
     totalStars: { control: { type: "number", min: 1, max: 10 } },
     onRatingChange: { action: "rating changed" },
   },
@@ -46,8 +50,23 @@ export const FullRating: Story = {
 
 export const Interactive: Story = {
   args: {
-    rating: 0,
+    rating: 1,
     totalStars: 5,
+  },
+  parameters: {
+    controls: { disable: false },
+  },
+  argTypes: {
+    onRatingChange: {
+      table: {
+        disable: true,
+      },
+    },
+    rating: {
+      table: {
+        disable: true,
+      },
+    },
   },
   render: (args) => {
     const [rating, setRating] = useState(args.rating);
@@ -57,9 +76,27 @@ export const Interactive: Story = {
         rating={rating}
         onRatingChange={(newRating) => {
           setRating(newRating);
-          args.onRatingChange?.(newRating);
         }}
       />
     );
+  },
+};
+export const WithControls: Story = {
+  args: {
+    rating: 1,
+    totalStars: 5,
+  },
+  parameters: {
+    controls: { disable: false },
+  },
+  argTypes: {
+    onRatingChange: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  render: (args) => {
+    return <StarRating {...args} />;
   },
 };
