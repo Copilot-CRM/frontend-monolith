@@ -4,6 +4,7 @@ import { ChevronToggle } from "./chevron-toggle";
 const meta: Meta<typeof ChevronToggle> = {
   component: ChevronToggle,
   title: "UI/ChevronToggle",
+  tags: ["autodocs"],
 };
 
 export default meta;
