@@ -6,6 +6,7 @@ import { Button } from "@repo/ui/components/ui/button";
 const meta: Meta<typeof Toaster> = {
   title: "UI/Toaster",
   component: Toaster,
+  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
