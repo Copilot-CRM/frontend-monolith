@@ -4,6 +4,7 @@ import { Checkbox } from "@repo/ui/components/ui/checkbox";
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
   title: "UI/Checkbox",
+  tags: ["autodocs"],
   parameters: {
     layout: "centered",
     controls: { hideNoControlsWarning: true, disable: true },
