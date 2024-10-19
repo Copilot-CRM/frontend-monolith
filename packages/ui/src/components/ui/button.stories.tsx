@@ -125,13 +125,14 @@ export const Disabled: Story = {
   },
 };
 
-export const Interactive: Story = {
+export const WithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     children: "Button",
-    variant: "fill", // Set default value for variant here
+    variant: "fill", // Set default   value for variant here
     intent: "default", // Set default value for intent here
     size: "md", // Set default value for size here
   },

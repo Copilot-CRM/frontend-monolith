@@ -80,6 +80,7 @@ export const KeywordText: Story = {
 export const HeadingWithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     size: "md",
@@ -112,6 +113,7 @@ export const HeadingWithControls: Story = {
 export const BodyWithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     size: "md",
@@ -144,6 +146,7 @@ export const BodyWithControls: Story = {
 export const KeywordWithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     size: "md",

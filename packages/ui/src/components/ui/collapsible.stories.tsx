@@ -30,6 +30,9 @@ export default meta;
 type Story = StoryObj<typeof Collapsible>;
 
 export const Interactive: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
 

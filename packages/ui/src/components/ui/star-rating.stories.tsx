@@ -10,6 +10,9 @@ const meta: Meta<typeof StarRating> = {
   parameters: {
     controls: { hideNoControlsWarning: true, disable: true },
   },
+  args: {
+    onRatingChange: fn(),
+  },
   argTypes: {
     rating: { control: { type: "range", min: 0, max: 5, step: 1 } },
     totalStars: { control: { type: "number", min: 1, max: 10 } },
@@ -49,12 +52,13 @@ export const FullRating: Story = {
 };
 
 export const Interactive: Story = {
+  parameters: {
+    controls: { disable: false },
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     rating: 1,
     totalStars: 5,
-  },
-  parameters: {
-    controls: { disable: false },
   },
   argTypes: {
     onRatingChange: {
@@ -82,12 +86,13 @@ export const Interactive: Story = {
   },
 };
 export const WithControls: Story = {
+  parameters: {
+    controls: { disable: false },
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     rating: 1,
     totalStars: 5,
-  },
-  parameters: {
-    controls: { disable: false },
   },
   argTypes: {
     onRatingChange: {

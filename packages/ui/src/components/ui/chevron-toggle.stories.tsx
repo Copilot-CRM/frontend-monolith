@@ -26,6 +26,9 @@ export const Showcase: Story = {
 };
 
 export const WithControls: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     isOpen: false,
     alt: false,

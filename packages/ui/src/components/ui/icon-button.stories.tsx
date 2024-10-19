@@ -129,16 +129,17 @@ export const Active: Story = {
   },
 };
 
-export const Interactive: Story = {
+export const WithControls: Story = {
+  parameters: {
+    controls: { disable: false },
+    chromatic: { disableSnapshot: true },
+  },
   render: (args) => {
     return (
       <IconButton {...args}>
         <Plus />
       </IconButton>
     );
-  },
-  parameters: {
-    controls: { disable: false },
   },
   args: {
     variant: "fill", // Set default value for variant here
