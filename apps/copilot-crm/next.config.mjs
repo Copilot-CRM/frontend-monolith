@@ -21,6 +21,11 @@ const nextConfig = {
       } else {
         config.resolve.alias["msw/node"] = false;
       }
+
+      config.watchOptions = {
+        ...config.watchOptions,
+        ignored: /node_modules\/(?!@repo\/mocks)/,
+      }
     }
     return config;
   },

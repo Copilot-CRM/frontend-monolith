@@ -6,6 +6,7 @@ import { PROPERTIES } from "./property";
 import { PAYMENT_INFO } from "./payment-info";
 import { MOCK_DOCUMENTS } from "./documents";
 import { MOCK_ASSETS } from "./assets.mock";
+import { BUSINESS_INFO } from './businessInfo';
 
 export const handlers = [
   // get all users
@@ -104,5 +105,9 @@ export const handlers = [
   // get all assets
   http.get("https://api.example.com/assets", () => {
     return HttpResponse.json(MOCK_ASSETS);
+  }),
+  // get business info
+  http.get("https://api.example.com/business", () => {
+    return HttpResponse.json(BUSINESS_INFO);
   }),
 ];

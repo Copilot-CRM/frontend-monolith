@@ -6,7 +6,7 @@
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"],
-      "env": ["NODE_ENV"]
+      "env": ["NODE_ENV", "NEXT_RUNTIME"]
     },
     "lint": {
       "dependsOn": ["^lint"],
@@ -36,5 +36,6 @@
       "env": ["NODE_ENV"]
     }
   },
-  "globalDependencies": ["NODE_ENV", "ANALYZE"]
+  "globalDependencies": ["NODE_ENV", "ANALYZE"],
+  "globalEnv": ["NEXT_RUNTIME"]
 }

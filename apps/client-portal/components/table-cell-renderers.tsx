@@ -11,6 +11,7 @@ import { Button } from "@repo/ui/components/ui/button";
 // utils
 import { formatDate } from "../utils/formatDate";
 import _get from "lodash/get";
+import { formatUSD } from "@/utils/formatCurrency";
 
 type ColumnOptions<T> = {
   key: keyof T | string;
@@ -99,4 +100,9 @@ export function generateActionColumn<T>(
       </Button>
     ),
   });
+}
+
+export function CurrencyCell<T>({ value }) {
+  const formatted = value ? formatUSD(value) : "--";
+  return <div className="text-right font-medium">{formatted}</div>;
 }

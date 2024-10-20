@@ -56,6 +56,7 @@ import {
   TableCell,
   TableRow,
 } from "@repo/ui/components/ui/table";
+import { formatDate } from "@/utils/formatDate";
 
 const STATUS_VARIANT_MAP: { [key in EstimateType["status"]]: any } = {
   "Ready for Review": LineItems,
@@ -296,11 +297,7 @@ export default function Estimate() {
                           Date Requested
                         </TableCell>
                         <TableCell className="p-2 text-right">
-                          {estimate.requestDate
-                            ? new Date(
-                                estimate.requestDate,
-                              ).toLocaleDateString()
-                            : "--"}
+                          {formatDate(estimate.requestDate)}
                         </TableCell>
                       </TableRow>
                       <TableRow
@@ -315,9 +312,7 @@ export default function Estimate() {
                           Date Due
                         </TableCell>
                         <TableCell className="p-2 text-right">
-                          {estimate.visitDate
-                            ? new Date(estimate.visitDate).toLocaleDateString()
-                            : "--"}
+                          {formatDate(estimate.visitDate)}
                         </TableCell>
                       </TableRow>
                     </TableBody>
