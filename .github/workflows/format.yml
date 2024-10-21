@@ -17,4 +17,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run format
-        run: pnpm format --check
+        run: pnpm format:check
