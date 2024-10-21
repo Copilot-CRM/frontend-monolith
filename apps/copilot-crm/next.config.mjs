@@ -25,7 +25,7 @@ const nextConfig = {
       config.watchOptions = {
         ...config.watchOptions,
         ignored: /node_modules\/(?!@repo\/mocks)/,
-      }
+      };
     }
     return config;
   },
