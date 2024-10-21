@@ -10,7 +10,7 @@
     "dev": "turbo dev",
     "dev:crm": "turbo dev --filter=@repo/copilot-crm -- --port 3001",
     "dev:portal": "turbo dev --filter=@repo/client-portal -- --port 3000",
-    "format:check": "prettier --check --list-different \"**/*.{ts,tsx,md}\"",
+    "format:check": "prettier --list-different \"**/*.{ts,tsx,md}\"",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
     "test": "vitest",
