@@ -2,7 +2,15 @@
 name: "Chromatic"
 
 # Event for the workflow
-on: push
+on:
+  push:
+    branches:
+      - main
+
+# Concurrency settings
+concurrency:
+  group: chromatic-${{ github.ref }}
+  cancel-in-progress: true
 
 # List of jobs
 jobs:
@@ -12,21 +20,19 @@ jobs:
     # Job steps
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "20"
 
       - name: Install pnpm
         run: npm install -g pnpm
 
       - name: Install dependencies
-        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-        run: pnpm install
+        run: pnpm install # Using pnpm to install dependencies
 
-        # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         # Chromatic GitHub Action options

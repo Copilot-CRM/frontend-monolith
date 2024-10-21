@@ -9,21 +9,12 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    intent: {
-      control: "select",
-      options: ["neutral", "success", "warn", "danger", "action"],
-    },
-    children: {
-      control: "text",
-    },
-  },
 } satisfies Meta<typeof StatusChip>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ComponentShowcase: Story = {
+export const Showcase: Story = {
   render: () => {
     const intents = ["neutral", "success", "warn", "danger", "action"] as const;
 
@@ -39,49 +30,30 @@ export const ComponentShowcase: Story = {
   },
 };
 
-export const Default: Story = {
-  args: {
-    children: "Status",
-  },
-};
-
-export const Neutral: Story = {
-  args: {
-    intent: "neutral",
-    children: "Neutral Status",
-  },
-};
-
-export const Success: Story = {
-  args: {
-    intent: "success",
-    children: "Success Status",
-  },
-};
-
-export const Warn: Story = {
-  args: {
-    intent: "warn",
-    children: "Warning Status",
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    intent: "danger",
-    children: "Danger Status",
-  },
-};
-
-export const Action: Story = {
-  args: {
-    intent: "action",
-    children: "Action Status",
-  },
-};
-
 export const WithoutChildren: Story = {
   args: {
     intent: "neutral",
+  },
+};
+
+export const WithControls: Story = {
+  args: {
+    intent: "neutral",
+    children: "Neutral Text",
+  },
+  argTypes: {
+    intent: {
+      control: "select",
+      options: ["neutral", "success", "warn", "danger", "action"],
+    },
+    children: {
+      control: "text",
+    },
+  },
+  parameters: {
+    controls: { disable: false },
+  },
+  render: (args) => {
+    return <StatusChip {...args} />;
   },
 };
