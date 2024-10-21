@@ -10,7 +10,7 @@
     },
     "lint": {
       "dependsOn": ["^lint"],
-      "env": ["NODE_ENV"]
+      "env": ["NODE_ENV", "CI"]
     },
     "dev": {
       "cache": false,
