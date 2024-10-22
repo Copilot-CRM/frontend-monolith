@@ -1,5 +1,5 @@
 import "@repo/ui/globals.css";
-import "@repo/copilot-crm/overrides.css";
+// import "@repo/client-portal/overrides.css";
 // import "@/styles/collapsible.css";
 import type { AppProps } from "next/app";
 import { Inter as FontSans } from "next/font/google";
