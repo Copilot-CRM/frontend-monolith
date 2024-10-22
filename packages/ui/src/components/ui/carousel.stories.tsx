@@ -21,6 +21,9 @@ type Story = StoryObj<typeof Carousel>;
 
 // TODO - expose controls API to storybook
 export const WithControls: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   render: (args) => (
     <Carousel className="w-full max-w-xs" {...args}>
       <CarouselContent>

@@ -3,9 +3,11 @@ name: "Chromatic"
 
 # Event for the workflow
 on:
-  push:
+  pull_request:
     branches:
       - main
+    paths:
+      - "packages/ui/**"
 
 # Concurrency settings
 concurrency:
@@ -39,3 +41,4 @@ jobs:
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/ui

@@ -156,6 +156,7 @@ export const SingleSelect: Story = {
 export const WithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     size: "sm",

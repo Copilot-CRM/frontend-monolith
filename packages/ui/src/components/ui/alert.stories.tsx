@@ -56,9 +56,10 @@ export const Showcase = () => {
   );
 };
 
-export const Interactive: Story = {
+export const WithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     variant: "default",

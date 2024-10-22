@@ -98,6 +98,7 @@ export const Disabled: Story = {
 export const WithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     variant: "and-or",

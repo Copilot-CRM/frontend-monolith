@@ -37,6 +37,10 @@ export const WithoutChildren: Story = {
 };
 
 export const WithControls: Story = {
+  parameters: {
+    controls: { disable: false },
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     intent: "neutral",
     children: "Neutral Text",
@@ -49,9 +53,6 @@ export const WithControls: Story = {
     children: {
       control: "text",
     },
-  },
-  parameters: {
-    controls: { disable: false },
   },
   render: (args) => {
     return <StatusChip {...args} />;

@@ -16,6 +16,9 @@ export default meta;
 type Story = StoryObj<typeof Toaster>;
 
 export const Interactive: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   render: () => {
     const { toast } = useToast();
     return (
@@ -83,6 +86,7 @@ export const WithAction: Story = {
 export const WithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     title: "Toast with Action",
