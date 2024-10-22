@@ -1,19 +1,17 @@
-import { defineConfig } from "vitest/config";
+import { defineWorkspace, defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
 const isCI = process.env.CI === "true";
 
-export default defineConfig({
-  plugins: [
-    react({
-      jsxRuntime: "classic",
-    }),
-    tsconfigPaths(),
-  ],
+const sharedConfig = defineConfig({
+  plugins: [react(), tsconfigPaths()],
   resolve: {
     preserveSymlinks: true,
+    alias: {
+      "@date-fns/tz": path.resolve(__dirname, "node_modules/@date-fns/tz"),
+    },
   },
   optimizeDeps: {
     include: ["react", "react-dom", "react/jsx-runtime"],
@@ -53,3 +51,22 @@ export default defineConfig({
     },
   },
 });
+
+export default defineWorkspace([
+  {
+    ...sharedConfig,
+    test: {
+      ...sharedConfig.test,
+      name: "packages",
+      include: ["packages/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    },
+  },
+  {
+    ...sharedConfig,
+    test: {
+      ...sharedConfig.test,
+      name: "apps",
+      include: ["apps/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    },
+  },
+]);
