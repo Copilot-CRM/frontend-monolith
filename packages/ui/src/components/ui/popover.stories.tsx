@@ -80,13 +80,14 @@ export const WithCustomContent: Story = {
 };
 
 export const WithControls: Story = {
+  parameters: {
+    controls: { disable: false },
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     defaultOpen: false,
     open: false,
     modal: false,
-  },
-  parameters: {
-    controls: { disable: false },
   },
   argTypes: {
     open: {

@@ -65,6 +65,7 @@ export const Disabled: Story = {
 export const WithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     placeholder: "I'm some placeholder text",
