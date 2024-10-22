@@ -36,6 +36,9 @@ const formSchema = z.object({
 });
 
 export const Interactive: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   render: () => {
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),

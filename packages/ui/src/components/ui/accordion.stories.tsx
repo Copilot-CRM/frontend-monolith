@@ -102,6 +102,9 @@ export const SingleAccordion: Story = {
 
 // You can add a new story to demonstrate the usage of controls
 export const WithControls: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     type: "single",
     collapsible: true,

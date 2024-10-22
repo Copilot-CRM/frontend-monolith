@@ -14,6 +14,9 @@ export default meta;
 type Story = StoryObj<typeof Calendar>;
 
 export const WithControls: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     weekStartsOn: 1,
     mode: "single",

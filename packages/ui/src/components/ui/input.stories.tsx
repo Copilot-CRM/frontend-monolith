@@ -123,7 +123,11 @@ export const DisabledState: Story = {
   ),
 };
 
-export const Interactive: Story = {
+export const WithControls: Story = {
+  parameters: {
+    controls: { disable: false },
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     placeholder: "Interactive input",
     type: "text",
@@ -148,9 +152,6 @@ export const Interactive: Story = {
         type: "boolean",
       },
     },
-  },
-  parameters: {
-    controls: { disable: false },
   },
   render: (args) => <Input {...args} />,
 };

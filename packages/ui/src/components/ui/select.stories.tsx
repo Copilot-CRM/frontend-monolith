@@ -168,6 +168,7 @@ export const WithGroups: Story = {
 export const WithControls: Story = {
   parameters: {
     controls: { disable: false },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     value: "apple",

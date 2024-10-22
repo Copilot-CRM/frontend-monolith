@@ -58,13 +58,14 @@ export const Decorative: Story = {
 };
 
 export const WithControls: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+    controls: { disable: false },
+  },
   args: {
     decorative: false,
     orientation: "horizontal",
     className: "h-initial",
-  },
-  parameters: {
-    controls: { disable: false },
   },
   argTypes: {
     orientation: {
