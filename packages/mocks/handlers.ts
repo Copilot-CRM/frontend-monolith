@@ -6,7 +6,7 @@ import { PROPERTIES } from "./property";
 import { PAYMENT_INFO } from "./payment-info";
 import { MOCK_DOCUMENTS } from "./documents";
 import { MOCK_ASSETS } from "./assets.mock";
-import { BUSINESS_INFO } from './businessInfo';
+import { BUSINESS_INFO } from "./businessInfo";
 
 export const handlers = [
   // get all users

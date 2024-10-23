@@ -15,7 +15,10 @@ export const BUSINESS_INFO = {
   socialMedia: [
     { name: "Facebook", url: "https://www.facebook.com/madisonhandyman" },
     { name: "Instagram", url: "https://www.instagram.com/madisonhandyman" },
-    { name: "LinkedIn", url: "https://www.linkedin.com/company/madisonhandyman" },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/company/madisonhandyman",
+    },
     { name: "Twitter", url: "https://www.twitter.com/madisonhandyman" },
   ],
 };

@@ -1,4 +1,4 @@
-name: Lint
+name: Format
 on: push
 
 jobs:
@@ -16,5 +16,5 @@ jobs:
           version: 8
       - name: Install dependencies
         run: pnpm install
-      - name: Run lint
-        run: pnpm lint
+      - name: Run format
+        run: pnpm format:check

@@ -32,6 +32,9 @@ export default meta;
 type Story = StoryObj<typeof Dialog>;
 
 export const Interactive: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
