@@ -1,4 +1,17 @@
 services:
+  client-portal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: client-portal
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    volumes:
+      - .:/app
   copilot-crm:
     build:
       context: .
