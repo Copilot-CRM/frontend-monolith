@@ -1,5 +1,25 @@
 # Beacon Rock Development Guide
 
+## Application Quick Start Guide:
+
+### Prerequisites
+
+ - Have `just` installed
+    - `brew install just`
+ - Have docker installed
+    - [docker-desktop](https://www.docker.com/products/docker-desktop/)
+
+
+### Running the applications
+
+In order to build and run all of the applications, you just need to run the following command:
+
+```
+just up
+```
+
+This should handle installing the latest, building the application, then running the application.
+
 ## Install Dependencies
 
 To install the necessary dependencies, run:
