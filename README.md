@@ -4,11 +4,10 @@
 
 ### Prerequisites
 
- - Have `just` installed
-    - `brew install just`
- - Have docker installed
-    - [docker-desktop](https://www.docker.com/products/docker-desktop/)
-
+- Have `just` installed
+  - `brew install just`
+- Have docker installed
+  - [docker-desktop](https://www.docker.com/products/docker-desktop/)
 
 ### Running the applications
 
