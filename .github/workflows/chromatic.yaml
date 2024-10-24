@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -33,7 +35,10 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install # Using pnpm to install dependencies
+        run: pnpm install
+
+      - name: Build Storybook
+        run: pnpm --filter @repo/ui run build-storybook
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
