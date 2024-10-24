@@ -4,12 +4,6 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "docker:build:client-portal": "docker build . -t client-portal:latest --build-arg APP_NAME=client-portal",
-    "docker:run:client-portal": "docker run -p 3000:3000 client-portal:latest",
-    "docker:push:client-portal": "docker push client-portal:latest",
-    "docker:build:copilot-crm": "docker build . -t copilot-crm:latest --build-arg APP_NAME=copilot-crm",
-    "docker:run:copilot-crm": "docker run -p 3000:3000 copilot-crm:latest",
-    "docker:push:copilot-crm": "docker push copilot-crm:latest",
     "analyze": "turbo analyze",
     "build": "turbo build",
     "bundlewatch": "turbo bundlewatch",

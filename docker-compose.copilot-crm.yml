@@ -1,0 +1,15 @@
+services:
+  copilot-crm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: copilot-crm
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+    volumes:
+      - .:/app
+    command: ["pnpm", "start"]

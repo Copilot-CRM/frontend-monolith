@@ -1,5 +1,5 @@
 # Base image for building dependencies and building the app
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 # Install pnpm and turbo globally
 RUN npm install -g pnpm turbo
@@ -21,7 +21,7 @@ ARG APP_NAME
 RUN turbo run build --filter="@repo/${APP_NAME}"
 
 # Production image
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 
 # Install pnpm globally in the runner stage
 RUN npm install -g pnpm
@@ -52,5 +52,6 @@ ENV PATH=/app/node_modules/.bin:$PATH
 # Expose the application port
 EXPOSE 3000
 
+WORKDIR /app/apps/${APP_NAME}
 # Start the application
 CMD ["pnpm", "start"]
