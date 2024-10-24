@@ -3,8 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        APP_NAME: client-portal
+      target: client-portal
     ports:
       - "3000:3000"
     environment:
@@ -12,12 +11,12 @@ services:
       PORT: 3000
     volumes:
       - .:/app
+      
   copilot-crm:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        APP_NAME: copilot-crm
+      target: copilot-crm
     ports:
       - "3001:3001"
     environment:
@@ -25,4 +24,3 @@ services:
       PORT: 3001
     volumes:
       - .:/app
-    command: ["pnpm", "start"]
